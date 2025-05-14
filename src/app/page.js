@@ -1,103 +1,126 @@
-import Image from "next/image";
+'use client'
+import {useRouter} from 'next/navigation'
+import ProductCard from "./components/ProductCard";
+import ClientWrapper from "./ClientWrapper";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const router = useRouter()
+  const product = () => {
+    router.push('/product')
+  }
+  const facialDetail = () => {
+    router.push('/detail')
+  }
+  const massageDetail = () => {
+    router.push('/detail2')
+  }
+  const chiropracticDetail = () => {
+    router.push('/detail3')
+  }
+  const physiotherapyDetail = () => {
+    router.push('/detail4')
+  }
+
+  return (
+  <main>
+      <section className="hero">
+        <div className="hero-content">
+          <h1 style={{fontFamily: "Sacramento", fontSize: "clamp(64px,8vw,150px)", letterSpacing: "2px", lineHeight: "1"}}>
+            Rub Sa Baii</h1>
+          <hr style={{width: "40vw",margin: "0 auto 0.7vh", border: "1px solid #FE7F49"}} />
+          <p style = {{fontSize: "clamp(6px,3vw,50px)"}}>100% Natural for your health</p>
+          <div className="btn">
+            <button onClick={() => document.getElementById('1')?.scrollIntoView({ behavior: 'smooth' })}>Reserve Now</button>
+            <button onClick={() => document.getElementById('2')?.scrollIntoView({ behavior: 'smooth' })}>View all Products</button>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+
+      <section id="1" className="why">
+        <div className="text" style={{marginRight:"5vw"}}>
+          <h1 style={{fontSize: "2.5vh", fontFamily: '"Raleway", sans-serif'}}>Why Rub-Sa-Baii ?</h1>
+          <p style={{fontSize: "1.2vh"}}>Our spa stands out as a premier wellness center,<br></br>
+          offering a unique blend of relaxation, rejuvenation <br></br>
+          healing techniques. Here’s why you should choose </p>
+        </div>
+        <div className="grid-res">
+          <div className="content" style={{backgroundImage: "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/therapist.jpg')"}}>
+            <h2 style={{fontSize:"1.5vh", marginTop:"5px"}}>Expert Therapists</h2>
+          </div>
+          <div className="content" style={{backgroundImage: "linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/product.jpg')"}}>
+            <h2 style={{fontSize:"1.5vh", marginTop:"5px"}}>Premium Quality<br></br>Products</h2>
+          </div>
+          <div className="content" style={{backgroundImage: "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/afford.jpg')"}}>
+            <h2 style={{fontSize:"1.5vh", marginTop:"5px"}}>Affordable Luxury</h2>
+          </div>
+        </div>
+      </section>
+
+      <section className="services">
+        <h1 style={{fontSize:"2vh", letterSpacing:"1vh", fontFamily: '"Raleway", sans-serif', marginBottom: "0.5vh"}}>Our hot services</h1>
+        <div className="grid">
+          <div className="card1">
+            <div className="overlay">
+              <h2 style={{fontSize: "20px"}}><u>Facial</u></h2>
+              <p>helps improve blood circulation, promote lymphatic drainage, relax facial muscles, and enhance the overall appearance of the skin.</p>
+              <button onClick={facialDetail}>Detail</button>
+            </div>  
+            <img src={'/Facial.jpg'}></img>
+          </div>
+          <div className="card1">
+           <div className="overlay">
+              <h2 style={{fontSize: "20px"}}><u>Massage</u></h2>
+              <p>a therapeutic technique that involves the manipulation of muscles , tendons , and soft tissues of the body</p>
+              <button onClick={massageDetail}>Detail</button>
+            </div>  
+            <img src={'/massage.jpg'}></img>
+          </div>
+          <div className="card1">
+            <div className="overlay">
+              <h2 style={{fontSize: "20px"}}><u>Chiropractic</u></h2>
+              <p>focused on diagnosing, treating, and preventing mechanical disorders of the musculoskeletal system—especially the spine. It emphasizes </p>
+              <button onClick={chiropracticDetail}>Detail</button>
+            </div>  
+            <img src={'/chiropractic.jpg'}></img>
+          </div>
+          <div className="card1">
+            <div className="overlay">
+              <h2 style={{fontSize: "20px"}}><u>Physiotherapy</u></h2>
+              <p>aka physical therapy, is a healthcare profession focused on restoring movement and function when someone is affected by injury, illness, or disability.</p>
+              <button onClick={physiotherapyDetail}>Detail</button>
+            </div>  
+            <img src={'/physiotherapy.jpg'}></img>
+          </div>
+        </div>
+      </section>
+  
+      <section id="2" className="product">
+        <h1 style={{fontSize:"2vh", letterSpacing:"1vh", fontFamily: '"Raleway", sans-serif', marginBottom: "0.5vh"}}><b>Products Recommend</b></h1>
+        <div className="product-grid">
+          <div className="box" style={{gridArea: "skincare"}}>
+            <h1 className="h" style={{ lineHeight: "3vh"}}><b>Skincare</b></h1>
+            <button className="p-btn">Buy now</button>
+            <img src={'/skincare.jpg'}></img>
+          </div>
+          <div className="box" style={{gridArea: "perfume"}}>
+            <h1 className="h" style={{lineHeight: "3vh"}}><b>Perfume</b></h1>
+            <button className="p-btn">Buy now</button>
+            <img src={'/perfume.png'}></img>
+          </div>
+          <div className="box" style={{gridArea: "candle"}}>
+            <h1 className="h" style={{lineHeight: "3vh"}}><b>Scented<br></br>Candle</b></h1>
+            <button className="p-btn">Buy now</button>
+            <img src={'/candle.jpg'}></img>
+          </div>
+          <div className="box" style={{gridArea: "other"}}>
+            <h1 className="h" style={{lineHeight: "3vh"}}><b>Other</b></h1>
+            <button className="p-btn">Buy now</button>
+            <img src={'/other.jpg'}></img>
+          </div>
+        </div>
+      </section>
+
+  </main>
   );
 }

@@ -1,4 +1,11 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
-
-export default nextConfig;
+const nextConfig = {
+    experimental: {
+      serverActions: {
+        bodySizeLimit: '30mb', // กำหนดขนาดที่สามารถรับได้สูงสุด 30MB
+      },
+    },
+  };
+  
+  export default nextConfig;
+  
