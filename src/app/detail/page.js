@@ -6,6 +6,7 @@ import {useRouter} from 'next/navigation'
 import ProductCard from "../components/ProductCard";
 import ClientWrapper from "../ClientWrapper";
 
+
 const Gallery = dynamic(
     () => import('./components/gallery.client'),
     {
@@ -14,7 +15,7 @@ const Gallery = dynamic(
     }
 )
 const products = [
-  { id: 1, name: "FACIAL SPA", price: 1000 },
+  { id: 1, name: "FACIAL SPA", price: 1000,image: "/facial4.jpg", },
   
 ];
 

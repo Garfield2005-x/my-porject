@@ -3,6 +3,9 @@ import { createContext, useContext, useState } from "react";
 import { signOut } from "next-auth/react"; // นำเข้า signOut จาก next-auth
 import { useRouter } from "next/navigation"; 
 import Link from "next/link";
+import { SessionProvider } from "next-auth/react";
+
+
 
 // -------------------- Context --------------------
 const CartContext = createContext();
@@ -37,6 +40,7 @@ export default function ClientWrapper({ children }) {
   const router = useRouter(); // ใช้ Next.js Router สำหรับการนำทาง
 
   return (
+    
     <CartProvider>
       <Navbar showPopup={showPopup} setShowPopup={setShowPopup} router={router} />
       {children}
@@ -49,7 +53,7 @@ function Navbar({ showPopup, setShowPopup, router }) {
   const { cartItems } = useCart();
 
   const handleCheckout = () => {
-    router.push("/checkout"); // ไปที่หน้า checkout เมื่อคลิก
+    router.push("/cartpage"); // ไปที่หน้า checkout เมื่อคลิก
   };
 
   return (
@@ -92,57 +96,80 @@ function Navbar({ showPopup, setShowPopup, router }) {
           
       {showPopup && (
         <div
-          style={{
-            position: "absolute",
-            top: "60px",
-            right: "20px",
-            background: "white",
-            border: "1px solid #ccc",
-            padding: "10px",
-            zIndex: 1000,
-            width: "300px",
-          }}
-        >
-          <h4>สินค้าในตะกร้า</h4>
-          {cartItems.length === 0 ? (
-            <p>ไม่มีสินค้าในตะกร้า</p>
-          ) : (
-            <ul style={{ paddingLeft: "0", listStyle: "none" }}>
-              {cartItems.map((item, index) => (
-                <li
-                  key={index}
-                  style={{
-                    borderBottom: "1px solid #eee",
-                    padding: "5px 0",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                  }}
-                >
-                  <div>
-                    {item.name} - {item.price}฿
-                  </div>
-                </li>
-              ))}
-            </ul>
-          )}
+  style={{
+    position: "absolute",
+    top: "60px",
+    right: "20px",
+    background: "#F4F9E8",
+    border: "1px solid #D4E7C5",
+    borderRadius: "10px",
+    padding: "15px 20px",
+    zIndex: 1000,
+    width: "320px",
+    boxShadow: "0 8px 20px rgba(0, 0, 0, 0.15)",
+    fontFamily: "Raleway, sans-serif",
+    color: "#2E4A21"
+  }}
+>
+  <h4 style={{ marginBottom: "12px", fontSize: "18px", fontWeight: "600" }}>
+    🛒 Items in your cart
+  </h4>
 
-          {/* ปุ่มไปชำระเงิน */}
-          {cartItems.length > 0 && (
-            <button
-              style={{
-                marginTop: "10px",
-                padding: "10px",
-                backgroundColor: "#28a745",
-                color: "white",
-                border: "none",
-                width: "100%",
-              }}
-              onClick={handleCheckout} // ไปหน้า checkout
-            >
-              ไปชำระเงิน
-            </button>
-          )}
+  {cartItems.length === 0 ? (
+    <p style={{ fontSize: "14px", color: "#6D8A4C" }}>
+      No items in your cart.
+    </p>
+          ) : (
+            <ul
+  style={{
+    paddingLeft: 0,
+    listStyle: "none",
+    marginTop: "10px",
+  }}
+>
+  {cartItems.map((item, index) => (
+    <li
+      key={index}
+      style={{
+        borderBottom: "1px solid #E0E0E0",
+        padding: "8px 0",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        fontSize: "14px",
+        color: "#333",
+      }}
+    >
+      <div style={{ fontWeight: "500" }}>{item.name}</div>
+      <div style={{ color: "#5C8D3A" }}>{item.price.toLocaleString()} ฿</div>
+    </li>
+  ))}
+</ul>
+)}
+
+{cartItems.length > 0 && (
+  <button
+    style={{
+      marginTop: "15px",
+      padding: "12px",
+      backgroundColor: "#FE7F49",
+      color: "#fff",
+      border: "none",
+      borderRadius: "5px",
+      width: "100%",
+      fontSize: "15px",
+      fontWeight: "bold",
+      cursor: "pointer",
+      transition: "background-color 0.3s ease",
+    }}
+    onClick={handleCheckout}
+    onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#FE7F49")}
+    onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#263401")}
+  >
+    Checkout
+  </button>
+)}
+
         </div>
       )}
       

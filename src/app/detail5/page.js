@@ -13,20 +13,20 @@ const Gallery = dynamic(
     }
 )
 const products = [
-  { id: 1, name: "Chiropractic", price: 1000,image: "/chiropractic4.jpg", },
+  { id: 1, name: "Skincare", price: 1290,image: "/Skincare.jpg", },
   
 ];
 
-export default function detail(){
+export default function Detail(){
     const router = useRouter()
     const massageDetail = () => {
-      router.push('/detail2')
+      router.push('/detail6')
     }
     const facialDetail = () => {
-      router.push('/detail')
+      router.push('/detail7')
     }
-    const physiotherapyDetail = () => {
-      router.push('/detail4')
+    const chiropracticDetail = () => {
+      router.push('/detail8')
     }
 
     return(
@@ -34,22 +34,23 @@ export default function detail(){
             <section className="hero" style={{height: "20vh"}}></section>
 
             <section className="info">
-                <h1>Chiropractic</h1>
+                <h1>Skincare</h1>
                 <div className="detail">
                     <Gallery />
                     
                     <div className="detail-text">
-                        <h2>Price : x,xxx baht</h2>
-                        <h3>Detail</h3>
-                        <p>Key benefits:</p>
-                        <ul>
-                            <li>- Spinal Alignment & Posture Correction</li>
-                            <li>- Pain Relief Without Medication</li>
-                            <li>- Improved Nervous System Function</li>
-                            <li>- Increased Range of Motion & Flexibility</li>
-                            <li>- Relief from Headaches & Migraines</li>
-                            <li>- Better Balance & Body Awareness</li>
-                        </ul>
+                        <h2>Price : 1,290 baht</h2>
+<h3>Detail</h3>
+<p>Key benefits:</p>
+<ul>
+    <li>- Deep Hydration & Skin Nourishment</li>
+    <li>- Brightening & Even Skin Tone</li>
+    <li>- Acne & Blemish Reduction</li>
+    <li>- Anti-Aging & Fine Line Treatment</li>
+    <li>- Improved Skin Texture & Radiance</li>
+    <li>- Soothing & Rejuvenating Experience</li>
+</ul>
+
                         {products.map((p) => (
                                   <ProductCard key={p.id} product={p} />
                                 ))}
@@ -65,14 +66,14 @@ export default function detail(){
                             <h2 style={{fontSize: "20px"}}><u>Facial</u></h2>
                             <button onClick={facialDetail}>Detail</button>
                         </div>  
-                        <img src={'/Facial.jpg'}></img>
+                        <img src={'/Skincare.jpg'}></img>
                     </div>
                     <div className="card1">
                         <div className="overlay">
-                            <h2 style={{fontSize: "20px"}}><u>Physiotherapy</u></h2>
-                            <button onClick={physiotherapyDetail}>Detail</button>
+                            <h2 style={{fontSize: "20px"}}><u>Chiropractic</u></h2>
+                            <button onClick={chiropracticDetail}>Detail</button>
                         </div>  
-                        <img src={'/physiotherapy.jpg'}></img>
+                        <img src={'/chiropractic.jpg'}></img>
                     </div>     
                     <div className="card1" style={{marginRight: "3vw"}}>
                         <div className="overlay">
@@ -88,27 +89,27 @@ export default function detail(){
 
             <section className="more-detail" style={{minHeight:"75vh"}}>
                 <div className="l-content" style={{minHeight:"25vh"}}>
-                    <img src={'/spinal.jpg'} style={{width: "500px"}}></img>
+                    <img src={'/thai.jpg'} style={{width: "500px"}}></img>
                     <div className="txt">
-                        <h2>Spinal Adjustment Therapy</h2>
-                        <p>A time-honored healing technique using acupressure, gentle stretching,<br></br>
-                        and rhythmic compressions. Perfect for improving flexibility and energy flow</p>
+                        <h2>Post-Injury Rehabilitation</h2>
+                        <p>Personalized treatment plans for recovery from muscle strains,<br></br>
+                        joint injuries, or surgery — restoring strength, movement, and confidence.</p>
                     </div>    
                 </div>
                 <div className="l-content" style={{minHeight:"25vh", backgroundColor:"rgba(0, 0, 0, 0.05)"}}>
                     <div className="txt">
-                        <h2>Joint Mobilization & Alignment</h2>
-                        <p>Beyond the spine, we also work with shoulder, hip, and knee joints<br></br>
-                        to restore smooth movement and reduce chronic tension or misalignment.</p>
+                        <h2>Posture & Movement Correction</h2>
+                        <p>Detailed assessment of your body’s movement patterns<br></br>
+                        to identify imbalances and improve posture — helping prevent future injuries.</p>
                     </div>    
-                    <img src={'/chiropractic3.jpg'} style={{width: "500px"}}></img>
+                    <img src={'/aroma.jpg'} style={{width: "500px"}}></img>
                 </div>
                 <div className="l-content" style={{minHeight:"25vh"}}>
-                <img src={'/chiropractic5.jpg'} style={{width: "500px"}}></img>
+                <img src={'/head.jpg'} style={{width: "500px"}}></img>
                     <div className="txt">
-                        <h2>Neck & Cervical Care</h2>
-                        <p>Targeted adjustments and soft tissue work to reduce tension, ease stiffness,<br></br>
-                        and help with headaches, tech neck, and neck strain.</p>
+                        <h2>Therapeutic Exercise Programs</h2>
+                        <p>Guided stretching and strengthening exercises tailored to your needs,<br></br>
+                        improving flexibility, balance, and core stability over time.</p>
                     </div>    
                 </div>
             </section>

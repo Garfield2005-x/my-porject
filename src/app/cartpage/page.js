@@ -1,28 +1,72 @@
+"use client";
+import { useCart } from "../ClientWrapper"; // ใช้ import จาก ClientWrapper
+import { useState } from "react";
+import { QRCodeCanvas } from "qrcode.react";
+import { useRouter } from "next/navigation";
+import generatePayload from "promptpay-qr";
 import Link from "next/link";
 import Image from "next/image";
 import styles from './cart.style.css';
+import SlipUpload from "../components/SlipUpload";
+
+
+
+
+
 
 export default function CartPage() {
-  const cartItems = [
-    {
-      id: 1,
-      name: "RSB scented candle (rose)",
-      price: 799,
-      left: 14,
-      image: "/candle.jpg",
-      quantity: 1,
-    },
-    {
-      id: 2,
-      name: "Rub Sa Baii perfume (Aquatic)",
-      price: 1599,
-      left: 20,
-      image: "/perfume.png",
-      quantity: 1,
-    },
-  ];
+  
+  const { cartItems, removeFromCart, clearCart } = useCart();
+  const [slipFile, setSlipFile] = useState(null);
+  const [isPaymentComplete, setIsPaymentComplete] = useState(false);
+  const [email, setEmail] = useState(""); // Add email state
+  
+  
 
-  const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  const promptPayNumber = "0656206808"; // เบอร์ PromptPay
+
+  const totalPrice = cartItems.reduce((sum, item) => sum + item.price, 0);
+
+  const promptPayQR = generatePayload(promptPayNumber, { amount: totalPrice });
+
+
+  const handleSlipUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setSlipFile(file); // เก็บไฟล์สลิปที่อัปโหลด
+    }
+  };
+
+const handlePayment = async () => {
+  if (!slipFile) {
+    alert("กรุณาแนบสลิปก่อนทำการชำระเงิน");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("email", email);
+  formData.append("slip", slipFile);
+  formData.append("items", JSON.stringify(cartItems));
+
+  try {
+    const res = await fetch("/api/send-email", {
+      method: "POST",
+      body: formData,
+    });
+
+    // ตรวจสอบว่า API ส่งข้อมูลกลับมาเป็น JSON หรือไม่
+    const result = await res.json(); // รับข้อมูลในรูปแบบ JSON
+    if (res.ok) {
+      alert("📧 ส่งอีเมลยืนยันแล้ว!");
+      setIsPaymentComplete(true);
+    } else {
+      alert(result.message || "❌ ส่งอีเมลไม่สำเร็จ");
+    }
+  } catch (err) {
+    console.error("Error during payment:", err);
+    alert("เกิดข้อผิดพลาดขณะส่งอีเมล");
+  }
+};
 
   return (
     <div className="pageContainer">
@@ -47,30 +91,29 @@ export default function CartPage() {
                   <div className="headerItem"></div>
                 </div>
 
-                {cartItems.map((item) => (
-                  <div key={item.id} className="cartItem">
+                {cartItems.map((item, index) => (
+                  <div key={index} className="cartItem">
                     <div className="itemDetail">
                       <Image src={item.image} alt={item.name} width={80} height={80} />
                     </div>
                     <div>
                       <h3 className="itemName">{item.name}</h3>
-                      <p className="itemPrice">{item.price.toLocaleString()} Baht</p>
+                      <p className="itemPrice">{item.price} Baht</p>
+                      
                     </div>
-                    <div className="itemLeft">
-                      <span>{item.left} pcs</span>
-                    </div>
+                    
                     <div className="itemQuantity">
                       <div className="quantityControl">
-                        <button className="quantityButton">-</button>
-                        <span className="quantityValue">{item.quantity}</span>
-                        <button className="quantityButton">+</button>
+                        
+                        <span className="quantityValue">1</span>
+                        
                       </div>
                     </div>
                     <div className="itemTotal">
-                      <span>{(item.price * item.quantity).toLocaleString()} Baht</span>
+                      <span> {item.price} Baht</span>
                     </div>
                     <div className="itemRemove">
-                      <button className="removeButton">
+                      <button className="removeButton" onClick={() => removeFromCart(index)}>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                         </svg>
@@ -89,23 +132,29 @@ export default function CartPage() {
               <div className="summaryDetails">
                 <div className="summaryRow">
                   <span>Total product price</span>
-                  <span>{subtotal.toLocaleString()} Baht</span>
+                  <span>{totalPrice.toFixed(2)} Baht</span>
                 </div>
-                
-                {/* <div className="summaryRow">
-                  <span>Discount</span>
-                  <span className={styles.discount}>0 Baht</span>
-                </div> */}
                 
                 <div className="totalRow">
                   <span>Total price</span>
-                  <span>{subtotal.toLocaleString()} Baht</span>
+                  <span>{totalPrice.toFixed(2)} Baht</span>
                 </div>
+                <div className="qrSection">
+        <QRCodeCanvas value={promptPayQR} size={200} />
+        <p className="qrText">Scan to make a payment via PromptPay</p>
+      </div>
+
+      <div className="slipUploadSection">
+        <input type="file" onChange={handleSlipUpload} />
+        {slipFile && <p className="slipFileName">Attach a file.: {slipFile.name}</p>}
+      </div>
+      
               </div>
-              
-              <button className="checkoutButton">
+               {!isPaymentComplete && (
+              <button className="checkoutButton"onClick={handlePayment}
+          disabled={!slipFile}>
                 Confirm order
-              </button>
+              </button>)}
               
               <p className="continueShopping">
                 or <Link href="/product" className="continueLink">Choose additional products</Link>

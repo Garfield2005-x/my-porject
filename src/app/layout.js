@@ -1,6 +1,7 @@
 // ✅ ไม่ใส่ use client
 import "./globals.css";
 import ClientWrapper from "./ClientWrapper"; // ห่อทุกอย่างที่ใช้ client
+import { SessionProvider } from "next-auth/react";
 
 export const metadata = {
   title: "E-Commerce App",

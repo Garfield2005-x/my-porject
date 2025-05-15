@@ -13,7 +13,7 @@ const Gallery = dynamic(
     }
 )
 const products = [
-  { id: 1, name: "Massge", price: 1000 },
+  { id: 1, name: "Massge", price: 1000,image: "/massage.jpg", },
   
 ];
 

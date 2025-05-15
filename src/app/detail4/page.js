@@ -13,7 +13,7 @@ const Gallery = dynamic(
     }
 )
 const products = [
-  { id: 1, name: "Physiotherapy", price: 1000 },
+  { id: 1, name: "Physiotherapy", price: 1000,image: "/physiotherapy2.jpg", },
   
 ];
 
@@ -50,7 +50,9 @@ export default function detail(){
                             <li>- Better Balance & Fall Prevention</li>
                             <li>- Relaxing & Restorative Environment</li>
                         </ul>
-                        <button>Reserve Now</button>
+                        {products.map((p) => (
+                                  <ProductCard key={p.id} product={p} />
+                                ))}
                     </div>
                 </div>
             </section>

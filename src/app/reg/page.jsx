@@ -7,11 +7,12 @@ import Link from 'next/link'
 
 function regpage() {
         const [username, setUsername] = useState('');
+        const [phone, setPhone] = useState('');
         const [email, setEmail] = useState('');
         const [password, setPassword] = useState('');
         const [confirmPassword, setConfirmPassword] = useState('');
-        const [error, setError] = useState('');
-        const [success, setSuccess] = useState('');
+       
+        
        
         
     
@@ -19,7 +20,7 @@ function regpage() {
             e.preventDefault();
     
     
-            if (!username || !email || !password || !confirmPassword) {
+            if (!username || !email || !password || !confirmPassword|| !phone) {
                 alert('Please fill in all fields');
                 return;
             }
@@ -46,23 +47,24 @@ function regpage() {
                 }
     
                 const res = await fetch('http://localhost:3000/api/register', {
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ 
-                        username, email, password 
-                    })
-                })
-                
-                if (res.ok){
-                    const form = e.target;
-                    alert('');
-                    alert('User registration successful');
-                    form.reset();
-                } else {
-                    console.log("User registration failed");
-                }   
+  method: "POST",
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ username, email, password, phone })
+});
+
+const data = await res.json(); // 👈 อ่านข้อความจาก backend
+
+if (res.ok) {
+  alert("User registration successful");
+  window.location.href = "/lop";
+  e.target.reset();
+} else {
+  alert(data.message || "Registration failed");
+  console.error("Registration failed:", data.message);
+}
+
     
             } catch (error) {
                 alert('An error occurred', error);
@@ -87,13 +89,10 @@ function regpage() {
                     <form className="register-form" id="registrationForm" onSubmit={handleSubmit}>
                         <div className="form-row">
                             <div className="form-group">
-                                <label htmlFor="lastName">Username</label>
+                                <label htmlFor="username">Username</label>
                                 <input type="text" id="firstName" name="firstName" placeholder="Spa" onChange={(e) => setUsername(e.target.value)}/>
                             </div>
-                            {/* <div className="form-group">
-                                <label htmlFor="lastName">Last Name</label>
-                                <input type="text" id="lastName" name="lastName" placeholder="Lover"/>
-                            </div> */}
+                            
                         </div>
 
                         <div className="form-group">
@@ -103,7 +102,7 @@ function regpage() {
 
                         <div className="form-group">
                             <label htmlFor="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" placeholder="081-234-5678"/>
+                            <input type="text" id="phone" name="phone" placeholder="081-234-5678" onChange={(e) => setPhone(e.target.value)}/>
                         </div>
 
                         <div className="form-group">
@@ -124,7 +123,7 @@ function regpage() {
                             </label>
                         </div>
                         <div className="sub">
-                            <button type="submit" className="submit-btn" style={{marginBottom: "1vh"}}>
+                            <button  className="submit-btn" style={{marginBottom: "1vh"}}>
                                 Create Account
                             </button>
                             <a href="/lop">Already have account? Go back to login.</a>

@@ -5,6 +5,7 @@ import { QRCodeCanvas } from "qrcode.react";
 import { useRouter } from "next/navigation";
 import generatePayload from "promptpay-qr";
 
+
 export default function CheckoutPage() {
   const { cartItems, removeFromCart, clearCart } = useCart();
   const [slipFile, setSlipFile] = useState(null);
@@ -59,33 +60,56 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div>
-      <h1>หน้าชำระเงิน</h1>
-      {cartItems.length > 0 ? (
-        <>
-          <ul>
-            {cartItems.map((item, index) => (
-              <li key={index}>
-                {item.name} - {item.price}฿
-                <button onClick={() => removeFromCart(index)}>ลบ</button>
-              </li>
-            ))}
-          </ul>
-          <h3>ราคารวม: {totalPrice.toFixed(2)}฿</h3>
-          <QRCodeCanvas value={promptPayQR} size={200} />
-          <p>สแกนเพื่อชำระเงินผ่าน PromptPay</p>
-          <input type="file" onChange={handleSlipUpload} />
-          {slipFile && <p>คุณแนบไฟล์: {slipFile.name}</p>}
-          {!isPaymentComplete && (
-            <button onClick={handlePayment} disabled={!slipFile}>
-              จ่ายเงิน
-            </button>
-          )}
-          {isPaymentComplete && <p>✅ ชำระเงินสำเร็จ! ขอบคุณที่ซื้อสินค้ากับเรา.</p>}
-        </>
-      ) : (
-        <p>ไม่มีสินค้าในตะกร้า</p>
+    <div className="paymentPage">
+  {cartItems.length > 0 ? (
+    <>
+      {/* 🛒 รายการสินค้าในตะกร้า */}
+      <ul className="cartItemList">
+        {cartItems.map((item, index) => (
+          <li key={index} className="cartItem">
+            <span className="itemName">{item.name}</span> - 
+            <span className="itemPrice">{item.price}฿</span>
+            <button className="removeButton" onClick={() => removeFromCart(index)}>ลบ</button>
+          </li>
+        ))}
+      </ul>
+
+      {/* 💰 ยอดรวม */}
+      <h3 className="totalPrice">ราคารวม: {totalPrice.toFixed(2)}฿</h3>
+
+      {/* 📱 QR Code PromptPay */}
+      <div className="qrSection">
+        <QRCodeCanvas value={promptPayQR} size={200} />
+        <p className="qrText">สแกนเพื่อชำระเงินผ่าน PromptPay</p>
+      </div>
+
+      {/* 📎 อัปโหลดสลิป */}
+      <div className="slipUploadSection">
+        <input type="file" onChange={handleSlipUpload} />
+        {slipFile && <p className="slipFileName">คุณแนบไฟล์: {slipFile.name}</p>}
+      </div>
+
+      {/* ✅ ปุ่มจ่ายเงิน */}
+      {!isPaymentComplete && (
+        <button
+          className="payButton"
+          onClick={handlePayment}
+          disabled={!slipFile}
+        >
+          จ่ายเงิน
+        </button>
       )}
-    </div>
+
+      {/* 🎉 แจ้งชำระเงินสำเร็จ */}
+      {isPaymentComplete && (
+        <p className="successMessage">✅ ชำระเงินสำเร็จ! ขอบคุณที่ซื้อสินค้ากับเรา.</p>
+      )}
+    </>
+  ) : (
+    <p className="emptyCartMessage">ไม่มีสินค้าในตะกร้า</p>
+  )}
+</div>
+
+
   );
 }

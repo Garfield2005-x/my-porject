@@ -1,10 +1,20 @@
 'use client'
+import React, { useState } from 'react';
 import {useRouter} from 'next/navigation'
 import ProductCard from "./components/ProductCard";
 import ClientWrapper from "./ClientWrapper";
 
-export default function Home() {
 
+export default function Home() {
+  const products = [
+  { id: 1, name: "skincare", price: 359,image: "/skincare.jpg", },
+  { id: 2, name: "perfume", price: 199,image: "/perfume.jpg", },
+  { id: 3, name: "candle", price: 452,image: "/candle.jpg", },
+  { id: 4, name: "other", price: 337,image: "/other.jpg", },
+  
+];
+const [isOpen, setIsOpen] = useState(false)
+  const [showModal, setShowModal] = useState(false)
   const router = useRouter()
   const product = () => {
     router.push('/product')
@@ -20,6 +30,18 @@ export default function Home() {
   }
   const physiotherapyDetail = () => {
     router.push('/detail4')
+  }
+  const skincare = () => {
+    router.push('/detail5')
+  }
+  const perfume = () => {
+    router.push('/detail6')
+  }
+  const candle = () => {
+    router.push('/detail7')
+  }
+  const other = () => {
+    router.push('/detail8')
   }
 
   return (
@@ -100,22 +122,23 @@ export default function Home() {
         <div className="product-grid">
           <div className="box" style={{gridArea: "skincare"}}>
             <h1 className="h" style={{ lineHeight: "3vh"}}><b>Skincare</b></h1>
-            <button className="p-btn">Buy now</button>
+           <button className="p-btn" onClick={skincare}>Buy now</button>
+            
             <img src={'/skincare.jpg'}></img>
           </div>
           <div className="box" style={{gridArea: "perfume"}}>
             <h1 className="h" style={{lineHeight: "3vh"}}><b>Perfume</b></h1>
-            <button className="p-btn">Buy now</button>
+            <button className="p-btn" onClick={perfume}>Buy now</button>
             <img src={'/perfume.png'}></img>
           </div>
           <div className="box" style={{gridArea: "candle"}}>
             <h1 className="h" style={{lineHeight: "3vh"}}><b>Scented<br></br>Candle</b></h1>
-            <button className="p-btn">Buy now</button>
+            <button className="p-btn" onClick={candle}>Buy now</button>
             <img src={'/candle.jpg'}></img>
           </div>
           <div className="box" style={{gridArea: "other"}}>
             <h1 className="h" style={{lineHeight: "3vh"}}><b>Other</b></h1>
-            <button className="p-btn">Buy now</button>
+            <button className="p-btn" onClick={other}>Buy now</button>
             <img src={'/other.jpg'}></img>
           </div>
         </div>
