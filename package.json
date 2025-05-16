@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "deploy": "npm run build && firebase deploy",
     "start": "next start",
     "lint": "next lint"
   },
@@ -12,6 +13,7 @@
     "bcryptjs": "^3.0.2",
     "formidable": "^2.1.5",
     "formidable-serverless": "^1.1.1",
+    "mongodb": "^6.16.0",
     "mongoose": "^8.14.3",
     "next": "15.3.2",
     "next-auth": "^4.24.11",

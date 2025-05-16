@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic"
 import {useRouter} from 'next/navigation'
+import Image from "next/image";
 import ProductCard from "../components/ProductCard";
 import ClientWrapper from "../ClientWrapper";
 
@@ -17,7 +18,7 @@ const products = [
   
 ];
 
-export default function detail(){
+export default function Detail(){
     const router = useRouter()
     const facialDetail = () => {
       router.push('/detail')
@@ -64,31 +65,31 @@ export default function detail(){
                         <div className="overlay">
                             <h2 style={{fontSize: "20px"}}><u>Facial</u></h2>
                             <button onClick={facialDetail}>Detail</button>
-                        </div>  
-                        <img src={'/Facial.jpg'}></img>
+                        </div>
+                        <Image src={'/Facial.jpg'} alt="Facial treatment" width={300} height={200} />
                     </div>
                     <div className="card1">
                         <div className="overlay">
                             <h2 style={{fontSize: "20px"}}><u>Physiotherapy</u></h2>
                             <button onClick={physiotherapyDetail}>Detail</button>
                         </div>  
-                        <img src={'/physiotherapy.jpg'}></img>
+                        <Image src={'/physiotherapy.jpg'} alt="Physiotherapy session" width={300} height={200} />
                     </div>     
                     <div className="card1" style={{marginRight: "3vw"}}>
                         <div className="overlay">
                             <h2 style={{fontSize: "20px"}}><u>Chiropractic</u></h2>
                             <button onClick={chiropracticDetail}>Detail</button>
                         </div>  
-                        <img src={'/chiropractic.jpg'}></img>
+                        <Image src={'/chiropractic.jpg'} alt="Chiropractic adjustment" width={300} height={200} />
                     </div> 
                     <h1>YOU<br></br>MAY<br></br>LIKE</h1>         
-                </div>          
+                </div>
                 <hr style={{width: "80%",margin: "0 auto 0.7vh", border: "1px solid #263401"}} />
             </section>
 
             <section className="more-detail" style={{minHeight:"75vh"}}>
                 <div className="l-content" style={{minHeight:"25vh"}}>
-                    <img src={'/thai.jpg'} style={{width: "500px"}}></img>
+                    <Image src={'/thai.jpg'} alt="Traditional Thai Massage" width={500} height={333} />
                     <div className="txt">
                         <h2>Traditional Thai Massage</h2>
                         <p>A time-honored healing technique using acupressure, gentle stretching,<br></br>
@@ -101,10 +102,11 @@ export default function detail(){
                         <p>Relaxing strokes blended with pure essential oils to soothe the senses<br></br>
                         and melt away stress. Ideal for those seeking deep relaxation and emotional calm.</p>
                     </div>    
-                    <img src={'/aroma.jpg'} style={{width: "500px"}}></img>
+                    <Image src={'/aroma.jpg'} alt="Aroma Oil Massage" width={500} height={333} />
                 </div>
                 <div className="l-content" style={{minHeight:"25vh"}}>
-                <img src={'/head.jpg'} style={{width: "500px"}}></img>
+                <Image src={'/head.jpg'} alt="Head and Shoulder Massage" width={500} height={333} />
+                <Image src={'/head.jpg'} alt="Head and Shoulder Massage" width={500} height={333} style={{width: "500px"}} />
                     <div className="txt">
                         <h2>Sleep-Inducing Head & Shoulder Massage</h2>
                         <p>A gentle massage focused on the scalp, neck, and shoulders <br></br>

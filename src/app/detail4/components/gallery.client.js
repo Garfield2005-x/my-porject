@@ -1,4 +1,6 @@
 "use client";
+import { useState } from "react";
+import Image from "next/image";
 
 import { useRef } from 'react';
 
@@ -26,15 +28,20 @@ export default function Gallery(){
 
     return(
         <div className="detail-pic">
-            <img src={"/physiotherapy.jpg"} alt="large Img" className="large-Img" ref={largeImageRef}></img>
-            <img src={"/physiotherapy2.jpg"} alt="small Img1" className="small-Img" 
-            onClick={(e) => imgSwap(e.target)}></img>
-            <img src={"/physiotherapy3.jpg"} alt="small Img2" className="small-Img" 
-            onClick={(e) => imgSwap(e.target)}></img>
-            <img src={"/chiropractic4.jpg"} alt="small Img3" className="small-Img" 
-            onClick={(e) => imgSwap(e.target)}></img>
-            <img src={"/chiropractic5.jpg"} alt="small Img4" className="small-Img" 
-            onClick={(e) => imgSwap(e.target)}></img>
+            <Image src={"/physiotherapy.jpg"} alt="large Img" className="large-Img" ref={largeImageRef}width={500}
+  height={300}/>
+            <Image src={"/physiotherapy2.jpg"} alt="small Img1" className="small-Img" 
+            onClick={(e) => imgSwap(e.target)}width={500}
+  height={300}/>
+            <Image src={"/physiotherapy3.jpg"} alt="small Img2" className="small-Img" 
+            onClick={(e) => imgSwap(e.target)}width={500}
+  height={300}/>
+            <Image src={"/chiropractic4.jpg"} alt="small Img3" className="small-Img" 
+            onClick={(e) => imgSwap(e.target)}width={500}
+  height={300}/>
+            <Image src={"/chiropractic5.jpg"} alt="small Img4" className="small-Img" 
+            onClick={(e) => imgSwap(e.target)}width={500}
+  height={300}/>
         </div>
     );
 }

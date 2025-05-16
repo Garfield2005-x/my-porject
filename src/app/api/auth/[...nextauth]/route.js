@@ -98,3 +98,6 @@ const handler = async (req, res) => {
 };
 
 export { handler as GET, handler as POST };
+export const dynamic = "force-static";
+export const revalidate = 60; // ตั้งค่าการ revalidate ให้เป็นเวลา 60 วินาที
+

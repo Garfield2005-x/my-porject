@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic"
 import {useRouter} from 'next/navigation'
+import Image from "next/image";
 import ProductCard from "../components/ProductCard";
 import ClientWrapper from "../ClientWrapper";
 
@@ -17,7 +18,7 @@ const products = [
   
 ];
 
-export default function detail(){
+export default function Detail(){
     const router = useRouter()
     const massageDetail = () => {
       router.push('/detail2')
@@ -64,31 +65,32 @@ export default function detail(){
                         <div className="overlay">
                             <h2 style={{fontSize: "20px"}}><u>Facial</u></h2>
                             <button onClick={facialDetail}>Detail</button>
-                        </div>  
-                        <img src={'/Facial.jpg'}></img>
+                        </div>
+                        <Image src="/Facial.jpg" alt="Facial" width={400} height={300} />
+                        <Image src="/Facial.jpg" alt="Facial" width={400} height={300} />
                     </div>
                     <div className="card1">
                         <div className="overlay">
                             <h2 style={{fontSize: "20px"}}><u>Chiropractic</u></h2>
                             <button onClick={chiropracticDetail}>Detail</button>
                         </div>  
-                        <img src={'/chiropractic.jpg'}></img>
+                        <Image src="/chiropractic.jpg" alt="Chiropractic" width={400} height={300} />
                     </div>     
                     <div className="card1" style={{marginRight: "3vw"}}>
                         <div className="overlay">
                             <h2 style={{fontSize: "20px"}}><u>Massage</u></h2>
                             <button onClick={massageDetail}>Detail</button>
                         </div>  
-                        <img src={'/massage.jpg'}></img>
+                        <Image src="/massage.jpg" alt="Massage" width={400} height={300} />
                     </div> 
                     <h1>YOU<br></br>MAY<br></br>LIKE</h1>         
-                </div>          
+                </div>
                 <hr style={{width: "80%",margin: "0 auto 0.7vh", border: "1px solid #263401"}} />
             </section>
 
             <section className="more-detail" style={{minHeight:"75vh"}}>
                 <div className="l-content" style={{minHeight:"25vh"}}>
-                    <img src={'/thai.jpg'} style={{width: "500px"}}></img>
+                    <Image src="/thai.jpg" alt="Thai massage" width={500} height={333} style={{width: "500px", height: "auto"}} />
                     <div className="txt">
                         <h2>Post-Injury Rehabilitation</h2>
                         <p>Personalized treatment plans for recovery from muscle strains,<br></br>
@@ -101,10 +103,10 @@ export default function detail(){
                         <p>Detailed assessment of your body’s movement patterns<br></br>
                         to identify imbalances and improve posture — helping prevent future injuries.</p>
                     </div>    
-                    <img src={'/aroma.jpg'} style={{width: "500px"}}></img>
+                    <Image src="/aroma.jpg" alt="Aroma therapy" width={500} height={333} style={{width: "500px"}} />
                 </div>
                 <div className="l-content" style={{minHeight:"25vh"}}>
-                <img src={'/head.jpg'} style={{width: "500px"}}></img>
+                <Image src="/head.jpg" alt="Head massage" width={500} height={333} style={{width: "500px"}} />
                     <div className="txt">
                         <h2>Therapeutic Exercise Programs</h2>
                         <p>Guided stretching and strengthening exercises tailored to your needs,<br></br>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from 'react';
+import Image from 'next/image';
 
 export default function Gallery(){
     const largeImageRef = useRef(null);
@@ -26,15 +27,20 @@ export default function Gallery(){
 
     return(
         <div className="detail-pic">
-            <img src={"/massage.jpg"} alt="large Img" className="large-Img" ref={largeImageRef}></img>
-            <img src={"/massage2.jpg"} alt="small Img1" className="small-Img" 
-            onClick={(e) => imgSwap(e.target)}></img>
-            <img src={"/massage3.jpg"} alt="small Img2" className="small-Img" 
-            onClick={(e) => imgSwap(e.target)}></img>
-            <img src={"/massage4.jpg"} alt="small Img3" className="small-Img" 
-            onClick={(e) => imgSwap(e.target)}></img>
-            <img src={"/massage5.jpg"} alt="small Img4" className="small-Img" 
-            onClick={(e) => imgSwap(e.target)}></img>
+            <Image src={"/massage.jpg"} alt="large Img" className="large-Img" ref={largeImageRef} width={500}
+  height={300}/>
+            <Image src={"/massage2.jpg"} alt="small Img1" className="small-Img" 
+            onClick={(e) => imgSwap(e.target)}width={500}
+  height={300}/>
+            <Image src={"/massage3.jpg"} alt="small Img2" className="small-Img" 
+            onClick={(e) => imgSwap(e.target)}width={500}
+  height={300}/>
+            <Image src={"/massage4.jpg"} alt="small Img3" className="small-Img" 
+            onClick={(e) => imgSwap(e.target)}width={500}
+  height={300}/>
+            <Image src={"/massage5.jpg"} alt="small Img4" className="small-Img" 
+            onClick={(e) => imgSwap(e.target)}width={500}
+  height={300}/>
         </div>
     );
 }

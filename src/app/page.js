@@ -1,8 +1,7 @@
 'use client'
 import React, { useState } from 'react';
 import {useRouter} from 'next/navigation'
-import ProductCard from "./components/ProductCard";
-import ClientWrapper from "./ClientWrapper";
+import Image from 'next/image';
 
 
 export default function Home() {
@@ -88,7 +87,7 @@ const [isOpen, setIsOpen] = useState(false)
               <p>helps improve blood circulation, promote lymphatic drainage, relax facial muscles, and enhance the overall appearance of the skin.</p>
               <button onClick={facialDetail}>Detail</button>
             </div>  
-            <img src={'/Facial.jpg'}></img>
+            <Image src="/Facial.jpg" alt="Facial" width={400} height={300} />
           </div>
           <div className="card1">
            <div className="overlay">
@@ -96,7 +95,7 @@ const [isOpen, setIsOpen] = useState(false)
               <p>a therapeutic technique that involves the manipulation of muscles , tendons , and soft tissues of the body</p>
               <button onClick={massageDetail}>Detail</button>
             </div>  
-            <img src={'/massage.jpg'}></img>
+            <Image src="/massage.jpg" alt="Massage" width={400} height={300} />
           </div>
           <div className="card1">
             <div className="overlay">
@@ -104,7 +103,7 @@ const [isOpen, setIsOpen] = useState(false)
               <p>focused on diagnosing, treating, and preventing mechanical disorders of the musculoskeletal system—especially the spine. It emphasizes </p>
               <button onClick={chiropracticDetail}>Detail</button>
             </div>  
-            <img src={'/chiropractic.jpg'}></img>
+            <Image src="/chiropractic.jpg" alt="Chiropractic" width={400} height={300} />
           </div>
           <div className="card1">
             <div className="overlay">
@@ -112,7 +111,7 @@ const [isOpen, setIsOpen] = useState(false)
               <p>aka physical therapy, is a healthcare profession focused on restoring movement and function when someone is affected by injury, illness, or disability.</p>
               <button onClick={physiotherapyDetail}>Detail</button>
             </div>  
-            <img src={'/physiotherapy.jpg'}></img>
+            <Image src="/physiotherapy.jpg" alt="Physiotherapy" width={400} height={300} />
           </div>
         </div>
       </section>
@@ -124,22 +123,22 @@ const [isOpen, setIsOpen] = useState(false)
             <h1 className="h" style={{ lineHeight: "3vh"}}><b>Skincare</b></h1>
            <button className="p-btn" onClick={skincare}>Buy now</button>
             
-            <img src={'/skincare.jpg'}></img>
+            <Image src="/skincare.jpg" alt="Skincare product" width={300} height={200} />
           </div>
           <div className="box" style={{gridArea: "perfume"}}>
             <h1 className="h" style={{lineHeight: "3vh"}}><b>Perfume</b></h1>
             <button className="p-btn" onClick={perfume}>Buy now</button>
-            <img src={'/perfume.png'}></img>
+            <Image src="/perfume.png" alt="Perfume product" width={300} height={200} />
           </div>
           <div className="box" style={{gridArea: "candle"}}>
             <h1 className="h" style={{lineHeight: "3vh"}}><b>Scented<br></br>Candle</b></h1>
             <button className="p-btn" onClick={candle}>Buy now</button>
-            <img src={'/candle.jpg'}></img>
+            <Image src="/candle.jpg" alt="Candle product" width={300} height={200} />
           </div>
           <div className="box" style={{gridArea: "other"}}>
             <h1 className="h" style={{lineHeight: "3vh"}}><b>Other</b></h1>
-            <button className="p-btn" onClick={other}>Buy now</button>
-            <img src={'/other.jpg'}></img>
+            <button className="p-btn" onClick={perfume}>Buy now</button>
+            <Image src="/other.jpg" alt="Other product" width={300} height={200} />
           </div>
         </div>
       </section>

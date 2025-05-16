@@ -5,6 +5,7 @@ import dynamic from "next/dynamic"
 import {useRouter} from 'next/navigation'
 import ProductCard from "../components/ProductCard";
 import ClientWrapper from "../ClientWrapper";
+import Image from "next/image";
 
 
 const Gallery = dynamic(
@@ -67,22 +68,23 @@ export default function Detail(){
                         <div className="overlay">
                             <h2 style={{fontSize: "20px"}}><u>Massage</u></h2>
                             <button onClick={massageDetail}>Detail</button>
-                        </div>  
-                        <img src={'/massage.jpg'}></img>
+                        </div>
+                        <Image src="/massage.jpg" alt="Massage" width={400} height={300} />
+                        <Image src="/massage.jpg" alt="Massage" width={400} height={300} />
                     </div>
                     <div className="card1">
                         <div className="overlay">
                             <h2 style={{fontSize: "20px"}}><u>Physiotherapy</u></h2>
                             <button onClick={physiotherapyDetail}>Detail</button>
                         </div>  
-                        <img src={'/physiotherapy.jpg'}></img>
+                        <Image src="/physiotherapy.jpg" alt="Physiotherapy" width={400} height={300} />
                     </div>     
                     <div className="card1" style={{marginRight: "3vw"}}>
                         <div className="overlay">
                             <h2 style={{fontSize: "20px"}}><u>Chiropractic</u></h2>
                             <button onClick={chiropracticDetail}>Detail</button>
                         </div>  
-                        <img src={'/chiropractic.jpg'}></img>
+                        <Image src="/chiropractic.jpg" alt="Chiropractic" width={400} height={300} />
                     </div> 
                     <h1>YOU<br></br>MAY<br></br>LIKE</h1>         
                 </div>          
@@ -91,7 +93,7 @@ export default function Detail(){
 
             <section className="more-detail" style={{minHeight:"75vh"}}>
                 <div className="l-content" style={{minHeight:"25vh"}}>
-                    <img src={'/herbal.jpg'} style={{width: "500px"}}></img>
+                    <Image src="/herbal.jpg" alt="Herbal Detox Facial" width={500} height={333} style={{width: "500px", height: "auto"}} />
                     <div className="txt">
                         <h2>Herbal Detox Facial</h2>
                         <p>A gentle cleanse using Thai herbal extracts to remove impurities and<br></br>
@@ -104,10 +106,10 @@ export default function Detail(){
                         <p>Infused with hyaluronic acid and aloe vera, this facial revives dry, <br></br>
                         tired skin, restoring moisture balance and leaving a glowing finish.</p>
                     </div>    
-                    <img src={'/hydrate.jpg'} style={{width: "500px"}}></img>
+                    <Image src="/hydrate.jpg" alt="Deep Hydration Facial" width={500} height={333} style={{width: "500px"}} />
                 </div>
                 <div className="l-content" style={{minHeight:"25vh"}}>
-                <img src={'/age.jpg'} style={{width: "500px"}}></img>
+                <Image src="/age.jpg" alt="Anti-Aging Gold Therapy" width={500} height={333} style={{width: "500px"}} />
                     <div className="txt">
                         <h2>Anti-Aging Gold Therapy</h2>
                         <p>A luxurious treatment featuring 24K gold-infused products to lift, <br></br>

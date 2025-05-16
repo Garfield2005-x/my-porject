@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic"
 import {useRouter} from 'next/navigation'
+import Image from "next/image";
 import ProductCard from "../components/ProductCard";
 import ClientWrapper from "../ClientWrapper";
 
@@ -17,7 +18,7 @@ const products = [
   
 ];
 
-export default function detail(){
+export default function Detail(){
     const router = useRouter()
     const massageDetail = () => {
       router.push('/detail2')
@@ -64,22 +65,23 @@ export default function detail(){
                         <div className="overlay">
                             <h2 style={{fontSize: "20px"}}><u>Facial</u></h2>
                             <button onClick={facialDetail}>Detail</button>
-                        </div>  
-                        <img src={'/Facial.jpg'}></img>
+                        </div>
+                        <Image src="/Facial.jpg" alt="Facial treatment" width={300} height={200} />
+                        <Image src="/Facial.jpg" alt="Facial treatment" width={300} height={200} />
                     </div>
                     <div className="card1">
                         <div className="overlay">
                             <h2 style={{fontSize: "20px"}}><u>Physiotherapy</u></h2>
                             <button onClick={physiotherapyDetail}>Detail</button>
                         </div>  
-                        <img src={'/physiotherapy.jpg'}></img>
+                        <Image src="/physiotherapy.jpg" alt="Physiotherapy" width={300} height={200} />
                     </div>     
                     <div className="card1" style={{marginRight: "3vw"}}>
                         <div className="overlay">
                             <h2 style={{fontSize: "20px"}}><u>Massage</u></h2>
                             <button onClick={massageDetail}>Detail</button>
                         </div>  
-                        <img src={'/massage.jpg'}></img>
+                        <Image src="/massage.jpg" alt="Massage" width={300} height={200} />
                     </div> 
                     <h1>YOU<br></br>MAY<br></br>LIKE</h1>         
                 </div>          
@@ -88,7 +90,7 @@ export default function detail(){
 
             <section className="more-detail" style={{minHeight:"75vh"}}>
                 <div className="l-content" style={{minHeight:"25vh"}}>
-                    <img src={'/spinal.jpg'} style={{width: "500px"}}></img>
+                    <Image src="/spinal.jpg" width={500} height={333} alt="Spinal Adjustment Therapy" style={{width: "500px", height: "auto"}} />
                     <div className="txt">
                         <h2>Spinal Adjustment Therapy</h2>
                         <p>A time-honored healing technique using acupressure, gentle stretching,<br></br>
@@ -101,10 +103,10 @@ export default function detail(){
                         <p>Beyond the spine, we also work with shoulder, hip, and knee joints<br></br>
                         to restore smooth movement and reduce chronic tension or misalignment.</p>
                     </div>    
-                    <img src={'/chiropractic3.jpg'} style={{width: "500px"}}></img>
+                    <Image src="/chiropractic3.jpg" width={500} height={333} alt="Joint Mobilization & Alignment" style={{width: "500px", height: "auto"}} />
                 </div>
                 <div className="l-content" style={{minHeight:"25vh"}}>
-                <img src={'/chiropractic5.jpg'} style={{width: "500px"}}></img>
+                <Image src="/chiropractic5.jpg" width={500} height={333} alt="Neck & Cervical Care" style={{width: "500px", height: "auto"}} />
                     <div className="txt">
                         <h2>Neck & Cervical Care</h2>
                         <p>Targeted adjustments and soft tissue work to reduce tension, ease stiffness,<br></br>
