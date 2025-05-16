@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import React, { useState } from 'react'
-import Link from 'next/link'
+
 
 
 function regpage() {
@@ -58,7 +58,7 @@ const data = await res.json(); // 👈 อ่านข้อความจา�
 
 if (res.ok) {
   alert("User registration successful");
-  window.location.href = "/lop";
+  window.location.href = "/"; // Redirect to login page
   e.target.reset();
 } else {
   alert(data.message || "Registration failed");

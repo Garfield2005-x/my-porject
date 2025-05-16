@@ -4,7 +4,7 @@ const nextConfig = {
     serverActions: {
       bodySizeLimit: '30mb',
     },
-    appDir: true,
+ 
   },
   output: 'standalone', // ✅ ใช้ standalone สำหรับ dynamic route เช่น NextAuth
 };

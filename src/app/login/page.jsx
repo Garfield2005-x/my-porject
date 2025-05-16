@@ -15,23 +15,35 @@ function lopage({ children }) {
         const [error, setError] = React.useState('');
         const router = useRouter();
         
-        const handleSubmit = async (e) => {
-            e.preventDefault();
-            try{
-                const res = await signIn('credentials', {
-                    username, password, redirect: false
-                })
+       const handleSubmit = async (e) => {
+    e.preventDefault();
     
-                if (res.error) {
-                    alert("เกิดข้อผิดพลาดในการเข้าสู่ระบบ");
-                    return;
-                }
-                router.push('/'); // Redirect to the home page after successful login
-    
-            } catch (error) {
-                console.log(error)
+
+    try {
+        const res = await signIn('credentials', {
+            username,
+            password,
+            redirect: false,
+            callbackUrl: '/l',
+        });
+
+        // แสดงข้อมูลข้อผิดพลาดจากผลลัพธ์การล็อกอิน
+        if (res.error) {
+            console.error("Login failed:", res.error); // แสดงข้อผิดพลาดใน console
+            alert(`เกิดข้อผิดพลาดในการเข้าสู่ระบบ: ${res.error}`); // แสดงข้อผิดพลาดให้ผู้ใช้ทราบ
+            return;
         }
-        }
+
+        // หากเข้าสู่ระบบสำเร็จ
+        router.push('/l'); // เปลี่ยนหน้าไปที่ /l
+
+    } catch (error) {
+        console.log("Error occurred during login:", error);  // แสดงข้อผิดพลาดที่เกิดจาก network หรือ server
+        alert("เกิดข้อผิดพลาดระหว่างการล็อกอิน"); // แสดงข้อผิดพลาดให้ผู้ใช้ทราบ
+    }
+};
+
+
 
   
   useEffect(() => {

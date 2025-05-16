@@ -4,6 +4,7 @@ import {useRouter} from 'next/navigation'
 import Image from 'next/image';
 
 
+
 export default function Home() {
   const products = [
   { id: 1, name: "skincare", price: 359,image: "/skincare.jpg", },
@@ -54,6 +55,7 @@ const [isOpen, setIsOpen] = useState(false)
           <div className="btn">
             <button onClick={() => document.getElementById('1')?.scrollIntoView({ behavior: 'smooth' })}>Reserve Now</button>
             <button onClick={() => document.getElementById('2')?.scrollIntoView({ behavior: 'smooth' })}>View all Products</button>
+            
           </div>
         </div>
       </section>

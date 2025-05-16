@@ -4,7 +4,7 @@ import dynamic from "next/dynamic"
 import {useRouter} from 'next/navigation'
 import Image from "next/image";
 import ProductCard from "../components/ProductCard";
-import ClientWrapper from "../ClientWrapper";
+
 
 const Gallery = dynamic(
     () => import('./components/gallery.client'),
